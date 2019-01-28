@@ -44,7 +44,6 @@ class TestWrapper(EWrapper):
         ## Overriden method
         self._time_queue.put(time_from_server)
 
-
 class TestClient(EClient):
     """
     The client method
@@ -69,6 +68,7 @@ class TestClient(EClient):
         ## This is the native method in EClient, asks the server to send us the time please
         self.reqCurrentTime()
 
+
         ## Try and get a valid time
         MAX_WAIT_SECONDS = 10
 
@@ -82,6 +82,7 @@ class TestClient(EClient):
             print(self.get_error())
 
         return current_time
+
 
 class TestApp(TestWrapper, TestClient):
     def __init__(self, ipaddress, portid, clientid):
