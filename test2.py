@@ -35,7 +35,7 @@ class TestApp(wrapper.EWrapper, EClient):
 
 def main():
     app = TestApp()
-    app.connect("127.0.0.1", 4002, 3)
+    app.connect("127.0.0.1", 4002, 4)
     print("serverVersion:%s connectionTime:%s" % (app.serverVersion(),
                                                 app.twsConnectionTime()))
     app.run()
