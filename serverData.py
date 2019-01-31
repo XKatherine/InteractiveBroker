@@ -56,17 +56,19 @@ class TestApp(EWrapper, EClient):
 
 def main():
     def interpret(fields):
-        if len(fields) == 0:
+        buf = fields.split(b"\0")
+        msg = tuple(buf[0:-1])
+        if len(msg) == 0:
             return
-        
-        sMsgId = fields[0]
+
+        sMsgId = msg[0]
         nMsgId = int(sMsgId)
         print(nMsgId)
 
     
     app = TestApp()
-    app.connect("127.0.0.1", 4002, 31)
-    time.sleep(30)
+    app.connect("127.0.0.1", 4002, 102)
+    time.sleep(50)
     while not app.reader.msg_queue.empty():
         interpret(app.reader.msg_queue.get())
     app.run()
