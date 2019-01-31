@@ -8,19 +8,17 @@ class TestApp(EWrapper, EClient):
     def __init__(self):
         EWrapper.__init__(self)
         EClient.__init__(self, wrapper=self)
+
     @iswrapper
     def managedAccounts(self, accountsList: str):
         super().managedAccounts(accountsList)
         print("Account list:", accountsList)
-        # ! [managedaccounts]
-
         self.account = accountsList.split(",")[0]
 
     @iswrapper
     def nextValidId(self, orderId:int):
         print("setting nextValidOrderId: %d", orderId)
         self.nextValidOrderId = orderId
-        # here is where you start using api
         self.reqAccountSummary(2, "All", "$LEDGER")
 
     @iswrapper
